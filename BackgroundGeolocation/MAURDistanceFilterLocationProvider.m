@@ -185,10 +185,12 @@ enum {
         isAcquiringStationaryLocation = NO;
         [self stopMonitoringForRegion];
         [self stopMonitoringSignificantLocationChanges];
+        [self setShowsBackgroundLocationIndicator:NO];
     } else if (operationMode == MAURBackgroundMode) {
         isAcquiringSpeed = NO;
         isAcquiringStationaryLocation = YES;
         [self startMonitoringSignificantLocationChanges];
+        [self setShowsBackgroundLocationIndicator:YES];
     }
     
     aquireStartTime = [NSDate date];
@@ -436,6 +438,13 @@ enum {
 - (void) stopMonitoringSignificantLocationChanges
 {
     [locationManager stopMonitoringSignificantLocationChanges];
+}
+
+- (void) setShowsBackgroundLocationIndicator:(BOOL)shows
+{
+    if (@available(iOS 11, *)) {
+        locationManager.showsBackgroundLocationIndicator = shows;
+    }
 }
 
 /**
