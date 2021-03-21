@@ -185,7 +185,7 @@ enum {
         isAcquiringStationaryLocation = NO;
         [self stopMonitoringForRegion];
         [self stopMonitoringSignificantLocationChanges];
-        [self setShowsBackgroundLocationIndicator:NO];
+        [self setShowsBackgroundLocationIndicator:operationMode != MAURForegroundMode];
     } else if (operationMode == MAURBackgroundMode) {
         isAcquiringSpeed = NO;
         isAcquiringStationaryLocation = YES;
